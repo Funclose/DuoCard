@@ -8,19 +8,19 @@
     "net8.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Artem\\.nuget\\packages\\": {}
+    "C:\\Users\\Katerina\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Artem\\DuoCard\\DuoCards.csproj",
+      "projectUniqueName": "C:\\Users\\Katerina\\DuoCard\\DuoCards.csproj",
       "projectName": "DuoCards",
-      "projectPath": "C:\\Users\\Artem\\DuoCard\\DuoCards.csproj",
-      "packagesPath": "C:\\Users\\Artem\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Artem\\DuoCard\\obj\\",
+      "projectPath": "C:\\Users\\Katerina\\DuoCard\\DuoCards.csproj",
+      "packagesPath": "C:\\Users\\Katerina\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Katerina\\DuoCard\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Artem\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Katerina\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -66,7 +66,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

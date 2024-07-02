@@ -12,7 +12,7 @@ namespace DuoCards
             CardData cardData = new CardData { Path = "wordDictionary.dat" };
             Dictionary<string, string> wordDictionary = cardData.Load();
 
-            
+            // Если словарь пуст, добавляем начальные слова и сохраняем их
             if (wordDictionary.Count == 0)
             {
                 AddInitialWordsLight(wordDictionary);
@@ -23,52 +23,59 @@ namespace DuoCards
 
             while (true)
             {
-                Console.WriteLine("Выберите действие:");
-                Console.WriteLine("1. Перевести случайное слово");
-                Console.WriteLine("2. Добавить новое слово");
-                Console.WriteLine("3. Редактировать слово");
-                Console.WriteLine("4. Удалить слово");
-                Console.WriteLine("5. Просмотреть все слова");
-                Console.WriteLine("6. Поиск слова");
-                Console.WriteLine("7. Выйти из приложения");
+                DisplayMenu();
 
                 string choice = Console.ReadLine();
 
                 switch (choice)
                 {
                     case "1":
-                        Translater.TranslateRandomWord(wordDictionary, random);
+                        HandleTranslater.HandleTranslateRandomWord(wordDictionary, random);
                         break;
                     case "2":
-                        Translater.AddNewWord(wordDictionary);
-                        cardData.Save(wordDictionary);
+                        HandleTranslater.HandleAddNewWord(wordDictionary);
+                        cardData.Save(wordDictionary); // Сохраняем изменения после добавления слова
                         break;
                     case "3":
-                        Translater.EditWord(wordDictionary);
-                        cardData.Save(wordDictionary);
+                        HandleTranslater.HandleEditWord(wordDictionary);
+                        cardData.Save(wordDictionary); // Сохраняем изменения после редактирования слова
                         break;
                     case "4":
-                        Translater.DeleteWord(wordDictionary);
-                        cardData.Save(wordDictionary);
+                        HandleTranslater.HandleDeleteWord(wordDictionary);
+                        cardData.Save(wordDictionary); // Сохраняем изменения после удаления слова
                         break;
                     case "5":
-                        Translater.ViewAllWords(wordDictionary);
+                        HandleTranslater.HandleViewAllWords(wordDictionary);
                         break;
                     case "6":
-                        Translater.SearchWord(wordDictionary);
+                        HandleTranslater.HandleSearchWord(wordDictionary);
                         break;
                     case "7":
-                        return;
+                        return; // Выход из приложения
                     default:
                         Console.WriteLine("Неверный выбор. Попробуйте еще раз.");
                         break;
                 }
+
+                Console.WriteLine(); // Добавляем пустую строку для разделения вывода в меню
             }
+        }
+
+        static void DisplayMenu()
+        {
+            Console.WriteLine("Выберите действие:");
+            Console.WriteLine("1. Перевести случайное слово");
+            Console.WriteLine("2. Добавить новое слово");
+            Console.WriteLine("3. Редактировать слово");
+            Console.WriteLine("4. Удалить слово");
+            Console.WriteLine("5. Просмотреть все слова");
+            Console.WriteLine("6. Поиск слова");
+            Console.WriteLine("7. Выйти из приложения");
         }
 
         static void AddInitialWordsLight(Dictionary<string, string> wordDictionary)
         {
-            // Добавление начальных слов
+            // Инициализация начальных слов
             wordDictionary["apple"] = "яблоко";
             wordDictionary["house"] = "дом";
             wordDictionary["car"] = "машина";
@@ -91,11 +98,14 @@ namespace DuoCards
             wordDictionary["money"] = "деньги";
         }
     }
-
-
-
-    
 }
+
+
+
+
+
+
+
 
 
 
