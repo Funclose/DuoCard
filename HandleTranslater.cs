@@ -9,47 +9,54 @@ public static class HandleTranslater
 {
     public static void HandleTranslateRandomWord(Dictionary<string, string> wordDictionary, Random random)
     {
-        string randomKey;
-        string correctTranslation;
+        bool correct = true;
 
-        bool result = Translater.TranslateRandomWord(wordDictionary, random, out randomKey, out correctTranslation);
-
-        if (result)
+        while (correct)
         {
-            int attempts = 0;
-            bool correct = false;
-            while (!correct)
+            string randomKey;
+            string correctTranslation;
+
+            bool result = Translater.TranslateRandomWord(wordDictionary, random, out randomKey, out correctTranslation);
+
+            if (result)
             {
-                Console.WriteLine($"Переведите слово: {randomKey}");
-                string userTranslation = Console.ReadLine();
+                int attempts = 0;
+                correct = false;
+                while (!correct)
+                {
+                    Console.WriteLine($"Переведите слово: {randomKey}");
+                    string userTranslation = Console.ReadLine();
 
-                if (userTranslation.Equals("exit", StringComparison.OrdinalIgnoreCase))
-                {
-                    Console.WriteLine("Возвращение в основное меню.");
-                    return;
-                }
-                if (userTranslation.Equals("full", StringComparison.OrdinalIgnoreCase))
-                {
-                    Console.WriteLine($"Полный перевод: {correctTranslation}");
-                    return;
-                }
+                    if (userTranslation.Equals("exit", StringComparison.OrdinalIgnoreCase))
+                    {
+                        Console.WriteLine("Возвращение в основное меню.");
+                        return;
+                    }
+                    if (userTranslation.Equals("full", StringComparison.OrdinalIgnoreCase))
+                    {
+                        Console.WriteLine($"Полный перевод: {correctTranslation}");
+                        return;
+                    }
 
-                if (correctTranslation.Equals(userTranslation, StringComparison.OrdinalIgnoreCase))
-                {
-                    Console.WriteLine("Правильно!");
-                    correct = true;
-                }
-                else
-                {
-                    attempts++;
-                    string hint = Translater.GetHint(correctTranslation, attempts);
-                    Console.WriteLine($"Неправильно! Подсказка: {hint}");
+                    if (correctTranslation.Equals(userTranslation, StringComparison.OrdinalIgnoreCase))
+                    {
+                        Console.WriteLine("Правильно!");
+                        correct = true; 
+                        break;
+                    }
+                    else
+                    {
+                        attempts++;
+                        string hint = Translater.GetHint(correctTranslation, attempts);
+                        Console.WriteLine($"Неправильно! Подсказка: {hint}");
+                    }
                 }
             }
-        }
-        else
-        {
-            Console.WriteLine("Словарь пуст.");
+            else
+            {
+                Console.WriteLine("Словарь пуст.");
+                return;
+            }
         }
     }
 

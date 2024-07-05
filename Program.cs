@@ -11,6 +11,8 @@ namespace DuoCards
         {
             CardData cardData = new CardData { Path = "wordDictionary.dat" };
             Dictionary<string, string> wordDictionary = cardData.Load();
+            int sessionId = Statistics.GetNextSessionId();
+            Statistics stats = new Statistics(sessionId);
 
             
             if (wordDictionary.Count == 0)
@@ -51,7 +53,10 @@ namespace DuoCards
                         HandleTranslater.HandleSearchWord(wordDictionary);
                         break;
                     case "7":
-                        return; 
+                        stats.SaveToFile();
+                        break;
+                    case "8":
+                        return;
                     default:
                         Console.WriteLine("Неверный выбор. Попробуйте еще раз.");
                         break;
@@ -70,7 +75,8 @@ namespace DuoCards
             Console.WriteLine("4. Удалить слово");
             Console.WriteLine("5. Просмотреть все слова");
             Console.WriteLine("6. Поиск слова");
-            Console.WriteLine("7. Выйти из приложения");
+            Console.WriteLine("7. сохранить в файл");
+            Console.WriteLine("8. Выйти из приложения");
         }
 
         static void AddInitialWordsLight(Dictionary<string, string> wordDictionary)
