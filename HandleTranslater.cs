@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DuoCards;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,7 +42,7 @@ public static class HandleTranslater
 
                     if (correctTranslation.Equals(userTranslation, StringComparison.OrdinalIgnoreCase))
                     {
-                        Console.WriteLine("Правильно!");
+                        Decoration.WriteColoredText("Правильно!\n", ConsoleColor.Green);
                         correct = true;
                         break;
                     }

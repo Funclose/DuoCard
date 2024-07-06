@@ -11,10 +11,11 @@ namespace DuoCards
         {
             CardData cardData = new CardData { Path = "wordDictionary.dat" };
             Dictionary<string, string> wordDictionary = cardData.Load();
-            int sessionId = Statistics.GetNextSessionId();
-            Statistics stats = new Statistics(sessionId);
+            SessionStatistics allStatistics = SessionStatistics.LoadFromFile();
+            int sessionId = allStatistics.GetNextSessionId();
+            Statistics currentSession = new Statistics(sessionId);
 
-            
+
             if (wordDictionary.Count == 0)
             {
                 AddInitialWordsLight(wordDictionary);
@@ -33,9 +34,9 @@ namespace DuoCards
                 {
                     case "1":
                         Console.Write("\nВыход: ");
-                        WriteColoredText("exit", ConsoleColor.Red);
+                        Decoration.WriteColoredText("exit", ConsoleColor.Red);
                         Console.Write("\nполучить полное слово: ");
-                        WriteColoredText("full\n", ConsoleColor.Green);
+                        Decoration.WriteColoredText("full\n", ConsoleColor.Green);
                         HandleTranslater.HandleTranslateRandomWord(wordDictionary, random);
                         break;
                     case "2":
@@ -57,7 +58,8 @@ namespace DuoCards
                         HandleTranslater.HandleSearchWord(wordDictionary);
                         break;
                     case "7":
-                        stats.SaveToFile();
+                        allStatistics.AddSession(currentSession);
+                        allStatistics.SaveToFile();
                         break;
                     case "8":
                         return;
@@ -70,14 +72,7 @@ namespace DuoCards
             }
         }
 
-        static void WriteColoredText(string text, ConsoleColor color)
-        {
-            Console.ForegroundColor = color;
-            Console.Write(text);
-            Console.ResetColor(); // Reset to default color after writing the text
-            
-            
-        }
+          
         static void DisplayMenu()
         {
             Console.WriteLine("Выберите действие:");

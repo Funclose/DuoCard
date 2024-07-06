@@ -8,6 +8,41 @@ using Newtonsoft.Json;
 
 namespace DuoCards
 {
+    public class SessionStatistics
+    {
+        public List<Statistics> Sessions { get; set; }
+
+        public SessionStatistics()
+        {
+            Sessions = new List<Statistics>();
+        }
+
+        public void AddSession(Statistics session)
+        {
+            Sessions.Add(session);
+        }
+
+        public void SaveToFile()
+        {
+            string json = JsonConvert.SerializeObject(this);
+            File.WriteAllText("AllStatistics.json", json);
+        }
+
+        public static SessionStatistics LoadFromFile()
+        {
+            if (File.Exists("AllStatistics.json"))
+            {
+                string json = File.ReadAllText("AllStatistics.json");
+                return JsonConvert.DeserializeObject<SessionStatistics>(json);
+            }
+            return new SessionStatistics();
+        }
+
+        public int GetNextSessionId()
+        {
+            return Sessions.Count + 1;
+        }
+    }
     public class Statistics
     {
         public int SessionId { get; set; }
@@ -38,21 +73,6 @@ namespace DuoCards
             HintsUsed++;
         }
 
-        public void SaveToFile()
-        {
-            string path = $"Statistics_{SessionId}.json";
-            string json = JsonConvert.SerializeObject(this);
-            File.WriteAllText(path, json);
-        }
-
-        public static int GetNextSessionId()
-        {
-            int sessionId = 1;
-            while (File.Exists($"Statistics_{sessionId}.json"))
-            {
-                sessionId++;
-            }
-            return sessionId;
-        }
+        
     }
 }
