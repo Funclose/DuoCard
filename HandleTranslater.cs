@@ -35,13 +35,14 @@ public static class HandleTranslater
                     if (userTranslation.Equals("full", StringComparison.OrdinalIgnoreCase))
                     {
                         Console.WriteLine($"Полный перевод: {correctTranslation}");
-                        return;
+                        correct = true;
+                        break;
                     }
 
                     if (correctTranslation.Equals(userTranslation, StringComparison.OrdinalIgnoreCase))
                     {
                         Console.WriteLine("Правильно!");
-                        correct = true; 
+                        correct = true;
                         break;
                     }
                     else

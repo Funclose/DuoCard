@@ -32,6 +32,7 @@ namespace DuoCards
                 switch (choice)
                 {
                     case "1":
+                        Console.WriteLine("Выход: exit   получить полное слово: full");
                         HandleTranslater.HandleTranslateRandomWord(wordDictionary, random);
                         break;
                     case "2":
@@ -66,6 +67,10 @@ namespace DuoCards
             }
         }
 
+        static void TextColor(string text)
+        {
+            
+        }
         static void DisplayMenu()
         {
             Console.WriteLine("Выберите действие:");
