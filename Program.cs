@@ -1,7 +1,7 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Channels;
 
 namespace DuoCards
 {
@@ -32,7 +32,10 @@ namespace DuoCards
                 switch (choice)
                 {
                     case "1":
-                        Console.WriteLine("Выход: exit   получить полное слово: full");
+                        Console.Write("\nВыход: ");
+                        WriteColoredText("exit", ConsoleColor.Red);
+                        Console.Write("\nполучить полное слово: ");
+                        WriteColoredText("full\n", ConsoleColor.Green);
                         HandleTranslater.HandleTranslateRandomWord(wordDictionary, random);
                         break;
                     case "2":
@@ -67,8 +70,12 @@ namespace DuoCards
             }
         }
 
-        static void TextColor(string text)
+        static void WriteColoredText(string text, ConsoleColor color)
         {
+            Console.ForegroundColor = color;
+            Console.Write(text);
+            Console.ResetColor(); // Reset to default color after writing the text
+            
             
         }
         static void DisplayMenu()
