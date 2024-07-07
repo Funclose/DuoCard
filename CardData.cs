@@ -9,15 +9,15 @@ namespace DuoCards
 {
     internal class CardData
     {
-        public string Path {  get; set; }
-        
-        public void Save(Dictionary<string,string> dict)
+        public string Path { get; set; }
+
+        public void Save(Dictionary<string, string> dict)
         {
             using (FileStream fs = new FileStream(Path, FileMode.Create))
             {
                 using (BinaryWriter bw = new BinaryWriter(fs))
                 {
-                    foreach(var item in dict)
+                    foreach (var item in dict)
                     {
                         bw.Write(item.Key);
                         bw.Write(item.Value);
@@ -25,9 +25,9 @@ namespace DuoCards
                 }
             }
         }
-        public Dictionary<string,string> Load() 
+        public Dictionary<string, string> Load()
         {
-            Dictionary<string,string> dict = new Dictionary<string,string>();
+            Dictionary<string, string> dict = new Dictionary<string, string>();
             using (FileStream fs = new FileStream(Path, FileMode.Open))
             {
                 using (BinaryReader br = new BinaryReader(fs))
