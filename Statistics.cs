@@ -67,9 +67,9 @@ namespace DuoCards
     public class Statistics
     {
         public int SessionId { get; set; }
-        public int CorrectAnswers { get; private set; }
-        public int IncorrectAnswers { get; private set; }
-        public int HintsUsed { get; private set; }
+        public int CorrectAnswers { get; set; }
+        public int IncorrectAnswers { get; set; }
+        public int HintsUsed { get; set; }
 
         public Statistics(int sessionId)
         {
@@ -94,6 +94,9 @@ namespace DuoCards
             HintsUsed++;
         }
 
-        
+        public override string ToString()
+        {
+            return $"Session: {SessionId}, Correct answers: {CorrectAnswers}, Incorrect answers: {IncorrectAnswers}, Hints used: {HintsUsed} ";
+        }
     }
 }

@@ -68,7 +68,7 @@ namespace DuoCards
                         wordDictionary= cardData.Load();
                         break;
                     case "8":
-                        //TODO statistic
+                        allStatistics.ShowStat();
                         return;
                     case "9":
                         allStatistics.SaveToFile();
