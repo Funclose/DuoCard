@@ -64,6 +64,7 @@ namespace DuoCards
             return Sessions.Count + 1;
         }
     }
+
     public class Statistics
     {
         public int SessionId { get; set; }
