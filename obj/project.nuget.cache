@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "5lzFJUQk5mBqjPtnQpG37BysDVyY9vimALPSp1baWDdcpcb6apReEwNsPYOXNqS8eciFIxWuPDmHElSjXUHKPQ==",
+  "dgSpecHash": "8zuKo3l05uM=",
   "success": true,
-  "projectFilePath": "D:\\ЖЕНЯ\\Обучение\\ITStep\\ДЗ\\Control_work_cs\\DuoCards.csproj",
+  "projectFilePath": "C:\\Users\\Artem\\DuoCard\\DuoCards.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\user\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+    "C:\\Users\\Artem\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
   "logs": []
 }
