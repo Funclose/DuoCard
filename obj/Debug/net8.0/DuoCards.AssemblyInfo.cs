@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("DuoCards")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+17461c4bbf0b93ba04bd0f39c59fc7c579453433")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8418e13bf483fef5092396fe39657cd1d79254a6")]
 [assembly: System.Reflection.AssemblyProductAttribute("DuoCards")]
 [assembly: System.Reflection.AssemblyTitleAttribute("DuoCards")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
