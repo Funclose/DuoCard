@@ -16,9 +16,12 @@ namespace DuoCards
 
         static void Main(string[] args)
         {
-            CardData cardData = new CardData { Path = "wordDictionary.dat" };
+            MainMenu mainMenu = new MainMenu();
+            CardData cardData = new CardData { Path = mainMenu.SetDifficulty("1") };
             Dictionary<string, string> wordDictionary = cardData.Load();
-            SessionStatistics allStatistics = SessionStatistics.LoadFromFile();
+            SessionStatistics allStatistics = new SessionStatistics();
+            //allStatistics.SaveToFile();
+            allStatistics.LoadFromFile();
             int sessionId = allStatistics.GetNextSessionId();
             Statistics currentSession = new Statistics(sessionId);
 
@@ -33,7 +36,7 @@ namespace DuoCards
 
             while (true)
             {
-                DisplayMenu();
+                mainMenu.PrintMenu();
 
                 string choice = Console.ReadLine();
 
@@ -44,19 +47,19 @@ namespace DuoCards
                         Decoration.WriteColoredText("exit", ConsoleColor.Red);
                         Console.Write("\nполучить полное слово: ");
                         Decoration.WriteColoredText("full\n", ConsoleColor.Green);
-                        HandleTranslater.HandleTranslateRandomWord(wordDictionary, random);
+                        HandleTranslater.HandleTranslateRandomWord(wordDictionary, random, allStatistics);
                         break;
                     case "2":
                         HandleTranslater.HandleAddNewWord(wordDictionary);
-                        cardData.Save(wordDictionary); 
+                        cardData.Save(wordDictionary);
                         break;
                     case "3":
                         HandleTranslater.HandleEditWord(wordDictionary);
-                        cardData.Save(wordDictionary); 
+                        cardData.Save(wordDictionary);
                         break;
                     case "4":
                         HandleTranslater.HandleDeleteWord(wordDictionary);
-                        cardData.Save(wordDictionary); 
+                        cardData.Save(wordDictionary);
                         break;
                     case "5":
                         HandleTranslater.HandleViewAllWords(wordDictionary);
@@ -65,20 +68,28 @@ namespace DuoCards
                         HandleTranslater.HandleSearchWord(wordDictionary);
                         break;
                     case "7":
-                        allStatistics.AddSession(currentSession);
-                        allStatistics.SaveToFile();
+                        cardData.Save(wordDictionary);
+                        mainMenu.PrintDiff();
+                        choice = Console.ReadLine();
+                        cardData.Path =mainMenu.SetDifficulty(choice);
+                        wordDictionary= cardData.Load();
                         break;
                     case "8":
+                        allStatistics.ShowStat();
+                        return;
+                    case "9":
+                        allStatistics.SaveToFile();
+                        cardData.Save(wordDictionary);
                         return;
                     default:
                         Console.WriteLine("Неверный выбор. Попробуйте еще раз.");
                         break;
                 }
 
-                Console.WriteLine(); 
+                Console.WriteLine();
             }
-        }
 
+<<<<<<< HEAD
         static void PrintDiff(int var)
         {
             switch (var)
@@ -110,30 +121,34 @@ namespace DuoCards
             Console.WriteLine("7. сохранить в файл");
             Console.WriteLine("8. Выйти из приложения");
         }
+=======
+>>>>>>> 89d13b7d3531b3127cab860d109eaa7b8e416ada
 
-        static void AddInitialWordsLight(Dictionary<string, string> wordDictionary)
-        {
-            
-            wordDictionary["apple"] = "яблоко";
-            wordDictionary["house"] = "дом";
-            wordDictionary["car"] = "машина";
-            wordDictionary["book"] = "книга";
-            wordDictionary["computer"] = "компьютер";
-            wordDictionary["dog"] = "собака";
-            wordDictionary["cat"] = "кошка";
-            wordDictionary["tree"] = "дерево";
-            wordDictionary["sun"] = "солнце";
-            wordDictionary["moon"] = "луна";
-            wordDictionary["water"] = "вода";
-            wordDictionary["fire"] = "огонь";
-            wordDictionary["earth"] = "земля";
-            wordDictionary["sky"] = "небо";
-            wordDictionary["flower"] = "цветок";
-            wordDictionary["friend"] = "друг";
-            wordDictionary["family"] = "семья";
-            wordDictionary["love"] = "любовь";
-            wordDictionary["time"] = "время";
-            wordDictionary["money"] = "деньги";
+
+            static void AddInitialWordsLight(Dictionary<string, string> wordDictionary)
+            {
+
+                wordDictionary["apple"] = "яблоко";
+                wordDictionary["house"] = "дом";
+                wordDictionary["car"] = "машина";
+                wordDictionary["book"] = "книга";
+                wordDictionary["computer"] = "компьютер";
+                wordDictionary["dog"] = "собака";
+                wordDictionary["cat"] = "кошка";
+                wordDictionary["tree"] = "дерево";
+                wordDictionary["sun"] = "солнце";
+                wordDictionary["moon"] = "луна";
+                wordDictionary["water"] = "вода";
+                wordDictionary["fire"] = "огонь";
+                wordDictionary["earth"] = "земля";
+                wordDictionary["sky"] = "небо";
+                wordDictionary["flower"] = "цветок";
+                wordDictionary["friend"] = "друг";
+                wordDictionary["family"] = "семья";
+                wordDictionary["love"] = "любовь";
+                wordDictionary["time"] = "время";
+                wordDictionary["money"] = "деньги";
+            }
         }
         static void AddMediumWords(Dictionary<string, string> wordDictionary)
         {

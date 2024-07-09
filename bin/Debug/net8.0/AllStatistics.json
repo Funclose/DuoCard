@@ -1,1 +1,18 @@
+<<<<<<< HEAD
 {"Sessions":[{"SessionId":1,"CorrectAnswers":0,"IncorrectAnswers":0,"HintsUsed":0}]}
+=======
+[
+  {
+    "SessionId": 1,
+    "CorrectAnswers": 0,
+    "IncorrectAnswers": 0,
+    "HintsUsed": 0
+  },
+  {
+    "SessionId": 2,
+    "CorrectAnswers": 4,
+    "IncorrectAnswers": 5,
+    "HintsUsed": 5
+  }
+]
+>>>>>>> 89d13b7d3531b3127cab860d109eaa7b8e416ada

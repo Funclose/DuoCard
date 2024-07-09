@@ -8,20 +8,24 @@ namespace DuoCards
 {
     internal class MainMenu
     {
-        bool PlayGame = true;
         public void PrintMenu()
         {
-            Console.WriteLine("1) Start");
-            Console.WriteLine("2) Select difficulty level");
-            Console.WriteLine("3) Add new word");
-            Console.WriteLine("4) See the results");
-            Console.WriteLine("5) Exit");
+            Console.WriteLine("Выберите действие:");
+            Console.WriteLine("1. Перевести случайное слово");
+            Console.WriteLine("2. Добавить новое слово");
+            Console.WriteLine("3. Редактировать слово");
+            Console.WriteLine("4. Удалить слово");
+            Console.WriteLine("5. Просмотреть все слова");
+            Console.WriteLine("6. Поиск слова");
+            Console.WriteLine("7. Изменить сложность");
+            Console.WriteLine("8. Просмотр статистики");
+            Console.WriteLine("9. Выйти из приложения");
         }
-        public string SetDifficulty(int var) 
+        public string SetDifficulty(string var) 
         {
-            if (var == 0) return @".\light_level.bin";
-            else if (var == 1) return @".\Medium_level.bin";
-            else if (var == 2) return @".\Heavy_level.bin";
+            if (var == "1") return @".\Light_level.bin";
+            else if (var == "2") return @".\Medium_level.bin";
+            else if (var == "3") return @".\Heavy_level.bin";
             else throw new Exception("Еhere is no such level of difficulty!!");
         }
         public void PrintDiff()
@@ -29,69 +33,6 @@ namespace DuoCards
             Console.WriteLine("1) Light");
             Console.WriteLine("2) Medium");
             Console.WriteLine("3) Heavy");
-        }
-        public void Start ()
-        {
-            CardData data = new CardData();
-            data.Path = SetDifficulty(1);
-            while (PlayGame)
-            {
-                PrintMenu();
-                switch (MakeChoice())
-                {
-                    case 1:
-                        {
-                            data.Load();
-                            //TODO
-                            break;
-                        }
-                    case 2:
-                        {
-                            Console.Clear();
-                            PrintDiff();
-                            data.Path = SetDifficulty(MakeChoice());
-                            Console.Clear();
-                            break;
-                        }
-                    case 3:
-                        {
-                            //TODO
-                            //TODO data.Save();
-                            break;
-                        }
-                    case 4:
-                        {
-                            //TODO
-                            break;
-                        }
-                    case 5:
-                        {
-                            PlayGame = false;
-                            break;
-                        }
-                    default:
-                        {
-                            Console.WriteLine("Еhere is no such command");
-                            break;
-                        }
-
-                }
-            }
-            
-        }
-        public int MakeChoice()
-        {
-            Console.Write("Make choice: ");
-            string input = Console.ReadLine();
-            int choice;
-            if (int.TryParse(input, out choice))
-            {
-                return choice;
-            }
-            else
-            {
-                throw new Exception("Not the right choice! try again!");
-            }
         }
     }
 }

@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 public static class HandleTranslater
 {
-    public static void HandleTranslateRandomWord(Dictionary<string, string> wordDictionary, Random random)
+    public static void HandleTranslateRandomWord(Dictionary<string, string> wordDictionary, Random random, SessionStatistics allStatistics)
     {
+
+        Statistics newStat = new Statistics(allStatistics.getID()+1);
         bool correct = true;
 
         while (correct)
@@ -31,6 +33,7 @@ public static class HandleTranslater
                     if (userTranslation.Equals("exit", StringComparison.OrdinalIgnoreCase))
                     {
                         Console.WriteLine("Возвращение в основное меню.");
+                        allStatistics.AddSession(newStat);
                         return;
                     }
                     if (userTranslation.Equals("full", StringComparison.OrdinalIgnoreCase))
@@ -43,11 +46,14 @@ public static class HandleTranslater
                     if (correctTranslation.Equals(userTranslation, StringComparison.OrdinalIgnoreCase))
                     {
                         Decoration.WriteColoredText("Правильно!\n", ConsoleColor.Green);
+                        newStat.IncrementCorrectAnswers();
                         correct = true;
                         break;
                     }
                     else
                     {
+                        newStat.IncrementIncorrectAnswers();
+                        newStat.IncrementHintsUsed();
                         attempts++;
                         string hint = Translater.GetHint(correctTranslation, attempts);
                         Decoration.WriteColoredText("Неправильно! ", ConsoleColor.Red);
