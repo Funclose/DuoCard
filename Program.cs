@@ -12,7 +12,9 @@ namespace DuoCards
             MainMenu mainMenu = new MainMenu();
             CardData cardData = new CardData { Path = mainMenu.SetDifficulty("1") };
             Dictionary<string, string> wordDictionary = cardData.Load();
-            SessionStatistics allStatistics = SessionStatistics.LoadFromFile();
+            SessionStatistics allStatistics = new SessionStatistics();
+            //allStatistics.SaveToFile();
+            allStatistics.LoadFromFile();
             int sessionId = allStatistics.GetNextSessionId();
             Statistics currentSession = new Statistics(sessionId);
 
@@ -38,7 +40,7 @@ namespace DuoCards
                         Decoration.WriteColoredText("exit", ConsoleColor.Red);
                         Console.Write("\nполучить полное слово: ");
                         Decoration.WriteColoredText("full\n", ConsoleColor.Green);
-                        HandleTranslater.HandleTranslateRandomWord(wordDictionary, random);
+                        HandleTranslater.HandleTranslateRandomWord(wordDictionary, random, allStatistics);
                         break;
                     case "2":
                         HandleTranslater.HandleAddNewWord(wordDictionary);
@@ -66,6 +68,11 @@ namespace DuoCards
                         wordDictionary= cardData.Load();
                         break;
                     case "8":
+                        //TODO statistic
+                        return;
+                    case "9":
+                        allStatistics.SaveToFile();
+                        cardData.Save(wordDictionary);
                         return;
                     default:
                         Console.WriteLine("Неверный выбор. Попробуйте еще раз.");

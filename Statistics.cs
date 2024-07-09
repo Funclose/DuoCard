@@ -11,12 +11,16 @@ namespace DuoCards
     public class SessionStatistics
     {
         public List<Statistics> Sessions { get; set; }
-
+        public int SessionId {  get; set; }
         public SessionStatistics()
         {
             Sessions = new List<Statistics>();
+            SessionId = 0;
         }
-
+        public int getID()
+        {
+            return SessionId;
+        }
         public void AddSession(Statistics session)
         {
             Sessions.Add(session);
@@ -24,20 +28,37 @@ namespace DuoCards
 
         public void SaveToFile()
         {
-            string json = JsonConvert.SerializeObject(this);
-            File.WriteAllText("AllStatistics.json", json);
+            string json = JsonConvert.SerializeObject(Sessions, Newtonsoft.Json.Formatting.Indented);
+            File.WriteAllText(@".\AllStatistics.json", json);
         }
 
-        public static SessionStatistics LoadFromFile()
+        //public static SessionStatistics LoadFromFile()
+        //{
+        //    if (File.Exists("AllStatistics.json"))
+        //    {
+        //        string json = File.ReadAllText("AllStatistics.json");
+        //        return JsonConvert.DeserializeObject<SessionStatistics>(json);
+        //    }
+        //    return new SessionStatistics();
+        //}
+        public void LoadFromFile()
         {
-            if (File.Exists("AllStatistics.json"))
+            if (File.Exists(@".\AllStatistics.json"))
             {
-                string json = File.ReadAllText("AllStatistics.json");
-                return JsonConvert.DeserializeObject<SessionStatistics>(json);
+                List<Statistics> newList= new List<Statistics>();
+                string json = File.ReadAllText(@".\AllStatistics.json");
+                newList = JsonConvert.DeserializeObject<List<Statistics>>(json);
+                Sessions = newList;
+                SessionId = Sessions.Count();
             }
-            return new SessionStatistics();
         }
-
+        public void ShowStat()
+        {
+            foreach (Statistics session in Sessions)
+            {
+                Console.WriteLine(session);
+            }
+        }
         public int GetNextSessionId()
         {
             return Sessions.Count + 1;
