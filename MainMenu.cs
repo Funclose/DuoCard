@@ -18,7 +18,8 @@ namespace DuoCards
             Console.WriteLine("5. Просмотреть все слова");
             Console.WriteLine("6. Поиск слова");
             Console.WriteLine("7. Изменить сложность");
-            Console.WriteLine("8. Выйти из приложения");
+            Console.WriteLine("8. Просмотр статистики");
+            Console.WriteLine("9. Выйти из приложения");
         }
         public string SetDifficulty(string var) 
         {

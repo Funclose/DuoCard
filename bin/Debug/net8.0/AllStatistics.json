@@ -1,1 +1,14 @@
-{"Sessions":[{"SessionId":1,"CorrectAnswers":0,"IncorrectAnswers":0,"HintsUsed":0},{"SessionId":2,"CorrectAnswers":0,"IncorrectAnswers":0,"HintsUsed":0}]}
+[
+  {
+    "SessionId": 1,
+    "CorrectAnswers": 0,
+    "IncorrectAnswers": 0,
+    "HintsUsed": 0
+  },
+  {
+    "SessionId": 2,
+    "CorrectAnswers": 4,
+    "IncorrectAnswers": 5,
+    "HintsUsed": 5
+  }
+]
