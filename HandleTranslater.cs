@@ -50,7 +50,8 @@ public static class HandleTranslater
                     {
                         attempts++;
                         string hint = Translater.GetHint(correctTranslation, attempts);
-                        Console.WriteLine($"Неправильно! Подсказка: {hint}");
+                        Decoration.WriteColoredText("Неправильно! ", ConsoleColor.Red);
+                        Console.WriteLine($"подсказка: {hint}");
                     }
                 }
             }
@@ -61,6 +62,8 @@ public static class HandleTranslater
             }
         }
     }
+
+    
 
     public static void HandleAddNewWord(Dictionary<string, string> wordDictionary)
     {
@@ -136,5 +139,7 @@ public static class HandleTranslater
 
         Translater.SearchWord(wordDictionary, searchWord);
     }
+
+
 }
 

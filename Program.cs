@@ -7,6 +7,13 @@ namespace DuoCards
 {
     internal class Program
     {
+        public enum DifficultyLevel
+        {
+            Light,
+            Medium,
+            Heavy
+        }
+
         static void Main(string[] args)
         {
             CardData cardData = new CardData { Path = "wordDictionary.dat" };
@@ -72,7 +79,25 @@ namespace DuoCards
             }
         }
 
-          
+        static void PrintDiff(int var)
+        {
+            switch (var)
+            {
+                case 1:
+                    Console.WriteLine("Вы выбрали легкий уровень");
+                    break;
+                case 2:
+                    Console.WriteLine("Вы выбрали средний уровень");
+                    break;
+                case 3:
+                    Console.WriteLine("Вы выбрали тяжелый уровень");
+                    break;
+                default:
+                    Console.WriteLine("Нет такого уровня сложности");
+                    break;
+            }
+        }
+
         static void DisplayMenu()
         {
             Console.WriteLine("Выберите действие:");
@@ -109,6 +134,53 @@ namespace DuoCards
             wordDictionary["love"] = "любовь";
             wordDictionary["time"] = "время";
             wordDictionary["money"] = "деньги";
+        }
+        static void AddMediumWords(Dictionary<string, string> wordDictionary)
+        {
+            wordDictionary["universe"] = "вселенная";
+            wordDictionary["mountain"] = "гора";
+            wordDictionary["river"] = "река";
+            wordDictionary["music"] = "музыка";
+            wordDictionary["language"] = "язык";
+            wordDictionary["painting"] = "картина";
+            wordDictionary["history"] = "история";
+            wordDictionary["science"] = "наука";
+            wordDictionary["beauty"] = "красота";
+            wordDictionary["technology"] = "технология";
+            wordDictionary["future"] = "будущее";
+            wordDictionary["culture"] = "культура";
+            wordDictionary["adventure"] = "приключение";
+            wordDictionary["spirit"] = "дух";
+            wordDictionary["journey"] = "путешествие";
+            wordDictionary["knowledge"] = "знание";
+            wordDictionary["dream"] = "мечта";
+            wordDictionary["freedom"] = "свобода";
+            wordDictionary["success"] = "успех";
+            wordDictionary["challenge"] = "вызов";
+        }
+        static void AddHardWords(Dictionary<string, string> wordDictionary)
+        {
+            wordDictionary["philosophy"] = "философия";
+            wordDictionary["architecture"] = "архитектура";
+            wordDictionary["revolution"] = "революция";
+            wordDictionary["literature"] = "литература";
+            wordDictionary["medicine"] = "медицина";
+            wordDictionary["astronomy"] = "астрономия";
+            wordDictionary["mathematics"] = "математика";
+            wordDictionary["government"] = "правительство";
+            wordDictionary["environment"] = "окружающая среда";
+            wordDictionary["globalization"] = "глобализация";
+            wordDictionary["society"] = "общество";
+            wordDictionary["communication"] = "коммуникация";
+            wordDictionary["economy"] = "экономика";
+            wordDictionary["development"] = "развитие";
+            wordDictionary["industry"] = "индустрия";
+            wordDictionary["architecture"] = "архитектура";
+            wordDictionary["philosophy"] = "философия";
+            wordDictionary["architecture"] = "архитектура";
+            wordDictionary["revolution"] = "революция";
+            wordDictionary["literature"] = "литература";
+            wordDictionary["medicine"] = "медицина";
         }
     }
 }
