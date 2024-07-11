@@ -10,7 +10,7 @@ public static class HandleTranslater
 {
     public static void HandleTranslateRandomWord(Dictionary<string, string> wordDictionary, Random random, SessionStatistics allStatistics)
     {
-
+        DateTime Start = DateTime.Now;
         Statistics newStat = new Statistics(allStatistics.getID()+1);
         bool correct = true;
 
@@ -32,6 +32,8 @@ public static class HandleTranslater
 
                     if (userTranslation.Equals("exit", StringComparison.OrdinalIgnoreCase))
                     {
+                        DateTime End = DateTime.Now;
+                        newStat.Time = End - Start;
                         Console.WriteLine("Возвращение в основное меню.");
                         allStatistics.AddSession(newStat);
                         return;
@@ -39,6 +41,7 @@ public static class HandleTranslater
                     if (userTranslation.Equals("full", StringComparison.OrdinalIgnoreCase))
                     {
                         Console.WriteLine($"Полный перевод: {correctTranslation}");
+                        newStat.IncrementIncorrectAnswers();
                         correct = true;
                         break;
                     }
@@ -52,7 +55,6 @@ public static class HandleTranslater
                     }
                     else
                     {
-                        newStat.IncrementIncorrectAnswers();
                         newStat.IncrementHintsUsed();
                         attempts++;
                         string hint = Translater.GetHint(correctTranslation, attempts);
