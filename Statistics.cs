@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using Newtonsoft.Json;
 
+
 namespace DuoCards
 {
     public class SessionStatistics
@@ -32,15 +33,6 @@ namespace DuoCards
             File.WriteAllText(@".\AllStatistics.json", json);
         }
 
-        //public static SessionStatistics LoadFromFile()
-        //{
-        //    if (File.Exists("AllStatistics.json"))
-        //    {
-        //        string json = File.ReadAllText("AllStatistics.json");
-        //        return JsonConvert.DeserializeObject<SessionStatistics>(json);
-        //    }
-        //    return new SessionStatistics();
-        //}
         public void LoadFromFile()
         {
             if (File.Exists(@".\AllStatistics.json"))
@@ -52,12 +44,16 @@ namespace DuoCards
                 SessionId = Sessions.Count();
             }
         }
-        public void ShowStat()
+        public void ShowAllStat()
         {
             foreach (Statistics session in Sessions)
             {
                 Console.WriteLine(session);
             }
+        }
+        public void ShowMyStat()
+        {
+            Console.WriteLine(Sessions[Sessions.Count - 1]);
         }
         public int GetNextSessionId()
         {
@@ -71,6 +67,7 @@ namespace DuoCards
         public int CorrectAnswers { get; set; }
         public int IncorrectAnswers { get; set; }
         public int HintsUsed { get; set; }
+        public TimeSpan Time { get; set; }
 
         public Statistics(int sessionId)
         {
@@ -78,6 +75,7 @@ namespace DuoCards
             CorrectAnswers = 0;
             IncorrectAnswers = 0;
             HintsUsed = 0;
+            Time = TimeSpan.FromSeconds(1);
         }
 
         public void IncrementCorrectAnswers()
@@ -97,7 +95,7 @@ namespace DuoCards
 
         public override string ToString()
         {
-            return $"Session: {SessionId}, Correct answers: {CorrectAnswers}, Incorrect answers: {IncorrectAnswers}, Hints used: {HintsUsed} ";
+            return $"Session: {SessionId}, Correct answers: {CorrectAnswers}, Incorrect answers: {IncorrectAnswers}, Hints used: {HintsUsed}, Time spent {Time} ";
         }
     }
 }
